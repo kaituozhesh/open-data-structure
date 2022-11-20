@@ -7,7 +7,7 @@ package com.open.ityizhan.linear.structure.array;
  * @Date: 2022-11-19 16:39
  * @Version: 1.0.0
  */
-public class GenericArray<E> {
+public class DynamicArray<E> {
 
     private E[] data;
 
@@ -20,7 +20,7 @@ public class GenericArray<E> {
      *
      * @param capacity 容量
      */
-    public GenericArray(int capacity) {
+    public DynamicArray(int capacity) {
         data = (E[]) new Object[capacity];
         size = 0;
     }
@@ -28,7 +28,7 @@ public class GenericArray<E> {
     /**
      * 默认创建的数组容量为 10
      */
-    public GenericArray() {
+    public DynamicArray() {
         this(10);
     }
 
@@ -84,11 +84,11 @@ public class GenericArray<E> {
      * @param e
      */
     public void add(int index, E e) {
-        if (size == data.length) {
-            throw new IllegalArgumentException("Add failed. Array is full.");
-        }
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
+        }
+        if (size == data.length) {
+            resize(data.length * 2);
         }
 
         // 可以简化为 : System.arraycopy(data, index, data, index + 1, size - index);
@@ -162,6 +162,10 @@ public class GenericArray<E> {
         size--;
         data[size] = null;
 
+        if (size == data.length / 4 && data.length / 2 != 0) {
+            resize(data.length / 2);
+        }
+
         return temp;
     }
 
@@ -206,6 +210,14 @@ public class GenericArray<E> {
         }
         res.append("]");
         return res.toString();
+    }
+
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 
 }
