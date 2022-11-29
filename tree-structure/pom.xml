@@ -2,16 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>open-data-structure</artifactId>
+        <groupId>com.open.ityizhan</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.open.ityizhan</groupId>
-    <artifactId>open-data-structure</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>open-linear-structure</module>
-        <module>tree-structure</module>
-    </modules>
+    <artifactId>tree-structure</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
